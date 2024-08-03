@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "check:types": "tsc --noEmit",
-    "format": "prettier --write ."
+    "check:format": "prettier --check .",
+    "format": "prettier --write .",
+    "prepare": "husky"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -89,6 +91,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react-hooks": "^4.6.2",
+    "husky": "^9.1.4",
     "postcss": "^8",
     "prettier": "^3.3.3",
     "prettier-eslint": "^16.3.0",
