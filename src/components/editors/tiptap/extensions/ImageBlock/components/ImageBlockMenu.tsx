@@ -78,9 +78,7 @@ export const ImageBlockMenu: FC<MenuProps> = ({ editor, appendTo }) => {
         onCreate: (instance: Instance) => {
           tippyInstance.current = instance;
         },
-        appendTo: () => {
-          return appendTo?.current;
-        },
+        appendTo: appendTo?.current ? () => appendTo.current! : 'parent',
         plugins: [sticky],
         sticky: 'popper',
       }}

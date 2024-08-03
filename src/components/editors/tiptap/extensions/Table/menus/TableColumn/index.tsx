@@ -38,9 +38,7 @@ export const TableColumnMenu = React.memo(
         pluginKey="tableColumnMenu"
         updateDelay={0}
         tippyOptions={{
-          appendTo: () => {
-            return appendTo?.current;
-          },
+          appendTo: appendTo?.current ? () => appendTo.current! : 'parent',
           offset: [0, 15],
           popperOptions: {
             modifiers: [{ name: 'flip', enabled: false }],

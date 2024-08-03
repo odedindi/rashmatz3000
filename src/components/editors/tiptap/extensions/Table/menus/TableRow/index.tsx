@@ -38,9 +38,7 @@ export const TableRowMenu = React.memo(
         pluginKey="tableRowMenu"
         updateDelay={0}
         tippyOptions={{
-          appendTo: () => {
-            return appendTo?.current;
-          },
+          appendTo: appendTo?.current ? () => appendTo.current! : 'parent',
           placement: 'left',
           offset: [0, 15],
           popperOptions: {

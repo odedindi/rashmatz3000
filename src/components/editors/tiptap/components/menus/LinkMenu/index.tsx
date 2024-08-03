@@ -56,9 +56,7 @@ export const LinkMenu = ({ editor, appendTo }: MenuProps): JSX.Element => {
         popperOptions: {
           modifiers: [{ name: 'flip', enabled: false }],
         },
-        appendTo: () => {
-          return appendTo?.current;
-        },
+        appendTo: appendTo?.current ? () => appendTo.current! : 'parent',
         onHidden: () => {
           setShowEdit(false);
         },

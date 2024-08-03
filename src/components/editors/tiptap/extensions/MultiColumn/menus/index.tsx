@@ -48,7 +48,7 @@ export const ColumnsMenu = ({ editor, appendTo }: MenuProps) => {
           modifiers: [{ name: 'flip', enabled: false }],
         },
         getReferenceClientRect,
-        appendTo: () => appendTo?.current,
+        appendTo: appendTo?.current ? () => appendTo.current! : 'parent',
         plugins: [sticky],
         sticky: 'popper',
       }}
