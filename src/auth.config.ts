@@ -9,7 +9,7 @@ const { AUTH_SECRETE } = z
   })
   .parse(process.env);
 
-const getUserFromDb = async (email: unknown, password?: string) => {
+const getUserFromDb = async (email: unknown, _password?: string) => {
   if (typeof email !== 'string') return null;
 
   const user = {

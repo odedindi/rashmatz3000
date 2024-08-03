@@ -76,9 +76,9 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
     if (href === null) return;
 
     // if href empty unset link, else set link
-    href === ''
-      ? editor.chain().focus().extendMarkRange('link').unsetLink().run()
-      : editor.chain().focus().extendMarkRange('link').setLink({ href }).run();
+    if (href === '')
+      editor.chain().focus().extendMarkRange('link').unsetLink().run();
+    else editor.chain().focus().extendMarkRange('link').setLink({ href }).run();
   }, [editor]);
 
   const addImage = useCallback(() => {

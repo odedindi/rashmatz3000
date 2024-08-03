@@ -183,7 +183,7 @@ const AccountForm: FC = () => {
                     <CommandInput placeholder="Search language..." />
                     <CommandEmpty>No languages found.</CommandEmpty>
                     <CommandGroup>
-                      {languages.map((language, i) => (
+                      {languages.map((language) => (
                         <CommandItem
                           key={language.value}
                           value={language.value}

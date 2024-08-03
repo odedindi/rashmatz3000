@@ -1,6 +1,6 @@
 'use client';
 
-import { useEditor, EditorContent, type Editor, Content } from '@tiptap/react';
+import { useEditor, EditorContent, Content } from '@tiptap/react';
 import { baseExtensions } from './extensions/baseExtensions';
 import { FC, useRef } from 'react';
 

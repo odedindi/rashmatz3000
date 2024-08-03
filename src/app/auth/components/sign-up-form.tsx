@@ -1,4 +1,4 @@
-import { ComponentProps, FC, HTMLAttributes, useState } from 'react';
+import { FC, HTMLAttributes, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -40,7 +40,7 @@ const formSchema = z
     path: ['confirmPassword'],
   });
 
-export function SignUpForm({ className, ...props }: SignUpFormProps) {
+export const SignUpForm: FC<SignUpFormProps> = ({ className, ...props }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -145,4 +145,4 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
       </Form>
     </div>
   );
-}
+};

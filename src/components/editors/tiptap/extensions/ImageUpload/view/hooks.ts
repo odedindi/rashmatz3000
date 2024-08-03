@@ -1,6 +1,7 @@
 import { DragEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { API } from '@/lib/api';
 import { useToast } from '@/components/ui/use-toast';
+import { get } from 'lodash';
 
 export const useUploader = ({
   onUpload,
@@ -16,9 +17,9 @@ export const useUploader = ({
         const url = await API.uploadImage();
 
         onUpload(url);
-      } catch (errPayload: any) {
+      } catch (errPayload: unknown) {
         const error =
-          errPayload?.response?.data?.error || 'Something went wrong';
+          get(errPayload, 'response.data.error') || 'Something went wrong';
         toast({
           variant: 'destructive',
           title: 'Error',
@@ -27,7 +28,7 @@ export const useUploader = ({
       }
       setLoading(false);
     },
-    [onUpload]
+    [onUpload, toast]
   );
 
   return { loading, uploadFile };

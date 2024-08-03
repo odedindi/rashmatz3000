@@ -10,7 +10,6 @@ import {
   DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
 import { SlidersHorizontal } from 'lucide-react';
-import { FC } from 'react';
 
 interface DataTableViewOptionsProps<TData> {
   table: Table<TData>;
