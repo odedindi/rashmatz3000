@@ -4,7 +4,7 @@ import type { NextPage } from 'next';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import dynamic from 'next/dynamic';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useCallback } from 'react';
+import { FC, Suspense, useCallback } from 'react';
 import ContentSection from './components/content-section';
 
 const ProfileForm = dynamic(() => import('./features/profile-form'), {
@@ -48,7 +48,7 @@ const tabs = [
 ];
 
 const activeTabParamKey = 'tab';
-const ProfilePage: NextPage = () => {
+const ProfilePageContent: FC = () => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -91,5 +91,11 @@ const ProfilePage: NextPage = () => {
     </Tabs>
   );
 };
+
+const ProfilePage: NextPage = () => (
+  <Suspense fallback={'loading...'}>
+    <ProfilePageContent />
+  </Suspense>
+);
 
 export default ProfilePage;
