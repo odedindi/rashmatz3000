@@ -5,8 +5,10 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
+  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
+  DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer';
 
@@ -92,6 +94,10 @@ const Dropdown: FC<{
     <Drawer open={open} onOpenChange={setOpen} direction={'bottom'}>
       <DrawerTrigger asChild>{trigger}</DrawerTrigger>
       <DrawerContent>
+        <DrawerTitle className="sr-only">Menu</DrawerTitle>
+        <DrawerDescription className="sr-only">
+          Navigation links
+        </DrawerDescription>
         <DrawerHeader className={'flex justify-end'}>
           <DrawerClose asChild>
             <Button variant="outline" className="rounded">
