@@ -37,7 +37,7 @@ const links: NavLink[] = [
   },
   {
     title: 'New Task',
-    href: '/tasks/new',
+    href: '/task/new',
   },
   // {
   //   title: 'Products',
