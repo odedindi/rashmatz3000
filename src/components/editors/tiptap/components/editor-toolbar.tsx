@@ -1,5 +1,5 @@
 import { type FC, useCallback, memo } from 'react';
-import { Button } from '@/components/ui/button';
+// import { Button } from '@/components/ui/button';
 
 import {
   Accordion,
@@ -45,12 +45,12 @@ import {
   Palette,
 } from 'lucide-react';
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+// import {
+//   DropdownMenu,
+//   DropdownMenuContent,
+//   DropdownMenuItem,
+//   DropdownMenuTrigger,
+// } from '@/components/ui/dropdown-menu';
 
 import EditorToolbarItem from './editor-toolbar-item';
 
@@ -97,7 +97,7 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
       <EditorToolbarItem
         onClick={editor.chain().focus().toggleBold().run}
         disabled={!editor.can().chain().focus().toggleBold().run()}
-        active={editor.isActive('bold') ? 1 : 0}
+        active={editor.isActive('bold')}
         title="Bold"
       >
         <Bold />
@@ -105,7 +105,7 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
       <EditorToolbarItem
         onClick={editor.chain().focus().toggleItalic().run}
         disabled={!editor.can().chain().focus().toggleItalic().run()}
-        active={editor.isActive('italic') ? 1 : 0}
+        active={editor.isActive('italic')}
         title="Italic"
       >
         <Italic />
@@ -113,7 +113,7 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
       <EditorToolbarItem
         onClick={editor.chain().focus().toggleUnderline().run}
         disabled={!editor.can().chain().focus().toggleUnderline().run()}
-        active={editor.isActive('underline') ? 1 : 0}
+        active={editor.isActive('underline')}
         title="Underline"
       >
         <UnderlineIcon />
@@ -121,7 +121,7 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
       <EditorToolbarItem
         onClick={editor.chain().focus().toggleStrike().run}
         disabled={!editor.can().chain().focus().toggleStrike().run()}
-        active={editor.isActive('strike') ? 1 : 0}
+        active={editor.isActive('strike')}
         title="Strike through"
       >
         <Strikethrough />
@@ -130,7 +130,7 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
       <EditorToolbarItem
         onClick={editor.chain().focus().toggleSubscript().run}
         disabled={!editor.can().chain().focus().toggleSubscript().run()}
-        active={editor.isActive('subscript') ? 1 : 0}
+        active={editor.isActive('subscript')}
         title="Subscript"
       >
         <SubscriptIcon />
@@ -138,7 +138,7 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
       <EditorToolbarItem
         onClick={editor.chain().focus().toggleSuperscript().run}
         disabled={!editor.can().chain().focus().toggleSuperscript().run()}
-        active={editor.isActive('superscript') ? 1 : 0}
+        active={editor.isActive('superscript')}
         title="Superscript"
       >
         <SuperscriptIcon />
@@ -146,7 +146,7 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
       <EditorToolbarItem
         onClick={editor.chain().focus().toggleCode().run}
         disabled={!editor.can().chain().focus().toggleCode().run()}
-        active={editor.isActive('code') ? 1 : 0}
+        active={editor.isActive('code')}
         title="Code"
       >
         <Code />
@@ -166,7 +166,7 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
       <EditorToolbarItem
         onClick={editor.chain().focus().setParagraph().run}
         disabled={editor.isActive('paragraph')}
-        active={editor.isActive('paragraph') ? 1 : 0}
+        active={editor.isActive('paragraph')}
         title="Paragraph"
       >
         <Text />
@@ -174,63 +174,63 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
       <EditorToolbarItem
         onClick={editor.chain().focus().toggleHeading({ level: 1 }).run}
         disabled={editor.isActive('heading', { level: 1 })}
-        active={editor.isActive('heading', { level: 1 }) ? 1 : 0}
+        active={editor.isActive('heading', { level: 1 })}
         title="H1"
       >
         <Heading1 />
       </EditorToolbarItem>
       <EditorToolbarItem
         onClick={editor.chain().focus().toggleHeading({ level: 2 }).run}
-        active={editor.isActive('heading', { level: 2 }) ? 1 : 0}
+        active={editor.isActive('heading', { level: 2 })}
         title="H2"
       >
         <Heading2 />
       </EditorToolbarItem>
       <EditorToolbarItem
         onClick={editor.chain().focus().toggleHeading({ level: 3 }).run}
-        active={editor.isActive('heading', { level: 3 }) ? 1 : 0}
+        active={editor.isActive('heading', { level: 3 })}
         title="H3"
       >
         <Heading3 />
       </EditorToolbarItem>
       <EditorToolbarItem
         onClick={editor.chain().focus().toggleHeading({ level: 4 }).run}
-        active={editor.isActive('heading', { level: 4 }) ? 1 : 0}
+        active={editor.isActive('heading', { level: 4 })}
         title="H4"
       >
         <Heading4 />
       </EditorToolbarItem>
       <EditorToolbarItem
         onClick={editor.chain().focus().toggleHeading({ level: 5 }).run}
-        active={editor.isActive('heading', { level: 5 }) ? 1 : 0}
+        active={editor.isActive('heading', { level: 5 })}
         title="H5"
       >
         <Heading5 />
       </EditorToolbarItem>
       <EditorToolbarItem
         onClick={editor.chain().focus().toggleHeading({ level: 6 }).run}
-        active={editor.isActive('heading', { level: 6 }) ? 1 : 0}
+        active={editor.isActive('heading', { level: 6 })}
         title="H6"
       >
         <Heading6 />
       </EditorToolbarItem>
       <EditorToolbarItem
         onClick={setLink}
-        active={editor.isActive('link') ? 1 : 0}
+        active={editor.isActive('link')}
         title="Link"
       >
         <Link2Icon />
       </EditorToolbarItem>
       <EditorToolbarItem
         onClick={editor.chain().focus().toggleBulletList().run}
-        active={editor.isActive('bulletList') ? 1 : 0}
+        active={editor.isActive('bulletList')}
         title="Bullet List"
       >
         <List />
       </EditorToolbarItem>
       <EditorToolbarItem
         onClick={editor.chain().focus().toggleOrderedList().run}
-        active={editor.isActive('orderedList') ? 1 : 0}
+        active={editor.isActive('orderedList')}
         title="Ordered List"
       >
         <ListOrdered />
@@ -238,7 +238,7 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
 
       <EditorToolbarItem
         onClick={() => editor.chain().focus().toggleTaskList().run()}
-        active={editor.isActive('taskList') ? 1 : 0}
+        active={editor.isActive('taskList')}
         title="Toggle task list"
       >
         <ListTodo />
@@ -267,14 +267,14 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
 
       <EditorToolbarItem
         onClick={editor.chain().focus().toggleCodeBlock().run}
-        active={editor.isActive('codeBlock') ? 1 : 0}
+        active={editor.isActive('codeBlock')}
         title="Code block"
       >
         Code block
       </EditorToolbarItem>
       <EditorToolbarItem
         onClick={editor.chain().focus().toggleBlockquote().run}
-        active={editor.isActive('blockquote') ? 1 : 0}
+        active={editor.isActive('blockquote')}
         title="Blockquote"
       >
         <Quote />
@@ -312,7 +312,7 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
       <EditorToolbarItem
         onClick={editor.chain().focus().toggleHighlight().run}
         disabled={!editor.can().chain().focus().toggleHighlight().run()}
-        active={editor.isActive('highlight') ? 1 : 0}
+        active={editor.isActive('highlight')}
         title="Highlight"
       >
         <Highlighter />
@@ -335,14 +335,10 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
         </PopoverContent>
       </Popover>
 
-      <Accordion
-        type="single"
-        collapsible
-        className="w-full bg-background/90 px-2"
-      >
+      <Accordion type="single" collapsible className="w-full bg-background/90">
         <AccordionItem value="item-1">
           <AccordionTrigger>Table</AccordionTrigger>
-          <AccordionContent className="flex w-full flex-wrap justify-start gap-2 bg-slate-200 p-2">
+          <AccordionContent className="flex w-full flex-wrap justify-start gap-1">
             <EditorToolbarItem
               onClick={() =>
                 editor
@@ -445,10 +441,10 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
         </AccordionItem>
         <AccordionItem value="item-2">
           <AccordionTrigger>Text Alignment</AccordionTrigger>
-          <AccordionContent className="flex w-full flex-wrap justify-start gap-2 bg-slate-200 p-2">
+          <AccordionContent className="flex w-full flex-wrap justify-start gap-1">
             <EditorToolbarItem
               onClick={() => editor.chain().focus().setTextAlign('left').run()}
-              active={editor.isActive({ textAlign: 'left' }) ? 1 : 0}
+              active={editor.isActive({ textAlign: 'left' })}
               title='Align text to "left"'
             >
               <AlignLeft />
@@ -457,14 +453,14 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
               onClick={() =>
                 editor.chain().focus().setTextAlign('center').run()
               }
-              active={editor.isActive({ textAlign: 'center' }) ? 1 : 0}
+              active={editor.isActive({ textAlign: 'center' })}
               title='Align text to "center"'
             >
               <AlignCenter />
             </EditorToolbarItem>
             <EditorToolbarItem
               onClick={() => editor.chain().focus().setTextAlign('right').run()}
-              active={editor.isActive({ textAlign: 'right' }) ? 1 : 0}
+              active={editor.isActive({ textAlign: 'right' })}
               title='Align text to "right"'
             >
               <AlignRight />
@@ -473,7 +469,7 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
               onClick={() =>
                 editor.chain().focus().setTextAlign('justify').run()
               }
-              active={editor.isActive({ textAlign: 'justify' }) ? 1 : 0}
+              active={editor.isActive({ textAlign: 'justify' })}
               title='Align text to "justify"'
             >
               <AlignJustify />
@@ -485,8 +481,8 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
               <Undo2 />
             </EditorToolbarItem>
 
-            <DropdownMenu>
-              {/* better refactor to a Select */}
+            {/* better refactor to a Select */}
+            {/* <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline">Select Font Family</Button>
               </DropdownMenuTrigger>
@@ -593,13 +589,9 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
                 >
                   <EditorToolbarItem
                     title="comic-sans-quoted"
-                    active={
-                      editor.isActive('textStyle', {
-                        fontFamily: '"Comic Sans"',
-                      })
-                        ? 1
-                        : 0
-                    }
+                    active={editor.isActive('textStyle', {
+                      fontFamily: '"Comic Sans"',
+                    })}
                   >
                     Comic Sans quoted
                   </EditorToolbarItem>
@@ -611,7 +603,7 @@ const EditorToolbar: FC<{ editor: Editor }> = ({ editor }) => {
                   Unset font family
                 </DropdownMenuItem>
               </DropdownMenuContent>
-            </DropdownMenu>
+            </DropdownMenu> */}
           </AccordionContent>
         </AccordionItem>
       </Accordion>

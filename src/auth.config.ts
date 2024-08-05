@@ -64,9 +64,10 @@ const authConfig = {
       return !!auth;
     },
   },
-  // pages:{
-  // signIn: '/auth/log-in',
-  // }
+  pages: {
+    signIn: '/auth/sign-in',
+    verifyRequest: '/auth/otp',
+  },
 } satisfies NextAuthConfig;
 
 export default authConfig;

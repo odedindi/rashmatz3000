@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { FC, Suspense, useCallback } from 'react';
 import ContentSection from './components/content-section';
+import { useSession } from 'next-auth/react';
 
 const ProfileForm = dynamic(() => import('./features/profile-form'), {
   ssr: false,
@@ -14,9 +15,6 @@ const AccountForm = dynamic(() => import('./features/account-form'), {
   ssr: false,
 });
 const AppearanceForm = dynamic(() => import('./features/appearance-form'), {
-  ssr: false,
-});
-const DisplayForm = dynamic(() => import('./features/display-form'), {
   ssr: false,
 });
 
@@ -39,21 +37,16 @@ const tabs = [
     desc: 'Customize the appearance of the app. Automatically switch between day and night themes.',
     Tab: AppearanceForm,
   },
-  {
-    value: 'display',
-    title: 'Display',
-    desc: "Turn items on or off to control what's displayed in the app.",
-    Tab: DisplayForm,
-  },
 ];
 
 const activeTabParamKey = 'tab';
 const ProfilePageContent: FC = () => {
   const router = useRouter();
   const pathname = usePathname();
-
   const searchParams = useSearchParams();
-  const activeTab = searchParams.get(activeTabParamKey) || undefined;
+
+  const { data: session } = useSession();
+  const activeTab = searchParams.get(activeTabParamKey) ?? tabs[0].value;
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -65,18 +58,19 @@ const ProfilePageContent: FC = () => {
     [searchParams]
   );
 
+  if (!session?.user) router.push('/auth/sign-in'); // Redirect to sign-in if user is not signed in
   return (
     <Tabs
       defaultValue="profile"
       value={activeTab}
-      className="w-full"
+      className="w-full pb-10"
       onValueChange={(tab) =>
         router.push(`${pathname}?${createQueryString('tab', tab)}`)
       }
     >
-      <TabsList className="mb-10">
+      <TabsList className="mb-4 px-2">
         {tabs.map(({ value, title }) => (
-          <TabsTrigger key={value} value={value}>
+          <TabsTrigger key={value} value={value} className="rounded">
             {title}
           </TabsTrigger>
         ))}

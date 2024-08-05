@@ -52,13 +52,17 @@ export function ForgotForm({ className, ...props }: ForgotFormProps) {
                 <FormItem className="space-y-1">
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="name@example.com" {...field} />
+                    <Input
+                      placeholder="name@example.com"
+                      {...field}
+                      className="rounded"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button className="mt-2" loading={isLoading}>
+            <Button className="mt-2 rounded" loading={isLoading}>
               Continue
             </Button>
           </div>

@@ -55,12 +55,6 @@ const RichTextEditor: FC<{
       <ColumnsMenu editor={editor} appendTo={wrapperRef} />
       <TableRowMenu editor={editor} appendTo={wrapperRef} />
       <TableColumnMenu editor={editor} appendTo={wrapperRef} />
-
-      <EditorInfo
-        characters={characterCount.characters()}
-        words={characterCount.words()}
-        className="justify-end py-4"
-      />
     </div>
   );
 };

@@ -17,8 +17,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { PasswordInput } from '@/components/ui/password-input';
 import { cn } from '@/lib/utils';
-import GithubIcon from './icons/github';
-import FacebookIcon from './icons/facebook';
+import GoogleIcon from './icons/google';
 
 interface UserAuthFormProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -65,15 +64,23 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             <FormField
               control={form.control}
               name="email"
-              render={({ field }) => (
-                <FormItem className="space-y-1">
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="name@example.com" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              render={({ field }) => {
+                console.log({ field });
+
+                return (
+                  <FormItem className="space-y-1">
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder="name@example.com"
+                        className="rounded"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
             />
             <FormField
               control={form.control}
@@ -90,13 +97,17 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                     </Link>
                   </div>
                   <FormControl>
-                    <PasswordInput placeholder="********" {...field} />
+                    <PasswordInput
+                      {...field}
+                      placeholder="********"
+                      className="rounded"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button className="mt-2" loading={isLoading}>
+            <Button className="mt-2 rounded" loading={isLoading}>
               Login
             </Button>
 
@@ -114,14 +125,14 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             <div className="flex items-center gap-2">
               <Button
                 variant="outline"
-                className="w-full"
+                className="w-full rounded"
                 type="button"
                 loading={isLoading}
-                leftSection={<GithubIcon className="h-4 w-4" />}
+                leftSection={<GoogleIcon className="h-4 w-4" />}
               >
-                GitHub
+                Google
               </Button>
-              <Button
+              {/* <Button
                 variant="outline"
                 className="w-full"
                 type="button"
@@ -129,7 +140,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                 leftSection={<FacebookIcon className="h-4 w-4" />}
               >
                 Facebook
-              </Button>
+              </Button> */}
             </div>
           </div>
         </form>

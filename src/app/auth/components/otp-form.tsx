@@ -64,7 +64,7 @@ export function OtpForm({ className, ...props }: OtpFormProps) {
                           <PinInputField
                             key={i}
                             component={Input}
-                            className={`${form.getFieldState('otp').invalid ? 'border-red-500' : ''}`}
+                            className={`${form.getFieldState('otp').invalid ? 'border-red-600 dark:border-red-400' : ''}`}
                           />
                         );
                       })}
@@ -74,7 +74,11 @@ export function OtpForm({ className, ...props }: OtpFormProps) {
                 </FormItem>
               )}
             />
-            <Button className="mt-2" disabled={disabledBtn} loading={isLoading}>
+            <Button
+              className="mt-2 rounded"
+              disabled={disabledBtn}
+              loading={isLoading}
+            >
               Verify
             </Button>
           </div>

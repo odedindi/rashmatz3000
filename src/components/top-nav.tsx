@@ -19,7 +19,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { type FC, type ReactNode, useState } from 'react';
 import { ClassValue } from 'clsx';
 
-export type NavLink = {
+type NavLink = {
   title: string;
   href: string;
 };
@@ -28,11 +28,28 @@ const navLinkClassName: ClassValue =
   'text-sm font-medium transition-colors hover:text-primary';
 const activeLinkClassName: ClassValue =
   'text-muted-foreground pointer-events-none';
-interface TopNavProps extends React.HTMLAttributes<HTMLElement> {
-  links: NavLink[];
-}
+interface TopNavProps extends React.HTMLAttributes<HTMLElement> {}
 
-export const TopNav: FC<TopNavProps> = ({ className, links, ...props }) => {
+const links: NavLink[] = [
+  {
+    title: 'Tasks',
+    href: '/tasks',
+  },
+  {
+    title: 'New Task',
+    href: '/tasks/new',
+  },
+  // {
+  //   title: 'Products',
+  //   href: '/dashboard/products',
+  // },
+  // {
+  //   title: 'Settings',
+  //   href: '/settings/user',
+  // },
+];
+
+export const TopNav: FC<TopNavProps> = ({ className, ...props }) => {
   const pathname = usePathname();
 
   return (

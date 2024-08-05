@@ -3,8 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { cn } from '@/lib/utils';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -16,10 +15,16 @@ import {
 } from '@/components/ui/form';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { toast } from '@/components/ui/use-toast';
-import { ChevronDown } from 'lucide-react';
-import { FC } from 'react';
+import type { FC } from 'react';
 import { useTheme } from 'next-themes';
 import { UseThemeProps } from 'next-themes/dist/types';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 const appearanceFormSchema = z.object({
   theme: z.enum(['light', 'dark', 'system'], {
@@ -33,8 +38,8 @@ const appearanceFormSchema = z.object({
 
 type AppearanceFormValues = z.infer<typeof appearanceFormSchema>;
 
-// This can come from your database or API.
 const defaultValues: Partial<AppearanceFormValues> = {
+  font: 'inter',
   theme: 'system',
 };
 
@@ -64,24 +69,22 @@ const AppearanceForm: FC = () => {
           control={form.control}
           name="font"
           render={({ field }) => (
-            <FormItem className="w-full">
-              <FormLabel>Font</FormLabel>
-              <div className="relative w-full">
+            <FormItem>
+              <FormLabel>Language</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <select
-                    className={cn(
-                      buttonVariants({ variant: 'outline' }),
-                      'w-full appearance-none font-normal'
-                    )}
-                    {...field}
-                  >
-                    <option value="inter">Inter</option>
-                    <option value="manrope">Manrope</option>
-                    <option value="system">System</option>
-                  </select>
+                  <SelectTrigger className="rounded capitalize">
+                    <SelectValue placeholder="Select a verified email to display" />
+                  </SelectTrigger>
                 </FormControl>
-                <ChevronDown className="absolute right-3 top-2.5 h-4 w-4 opacity-50" />
-              </div>
+                <SelectContent className="rounded">
+                  {['inter', 'manrope', 'system'].map((font, i) => (
+                    <SelectItem key={i} value={font} className="capitalize">
+                      {font}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <FormDescription>
                 Set the font you want to use in the dashboard.
               </FormDescription>
@@ -135,7 +138,9 @@ const AppearanceForm: FC = () => {
           )}
         />
 
-        <Button type="submit">Update preferences</Button>
+        <Button type="submit" className="rounded">
+          Update preferences
+        </Button>
       </form>
     </Form>
   );
@@ -146,26 +151,20 @@ export default AppearanceForm;
 const AppSkelaton: FC<{
   theme: UseThemeProps['systemTheme'];
 }> = ({ theme }) => {
-  const bgColor = theme === 'light' ? '[#ecedef]' : 'slate-950';
-  const containerColor = theme === 'light' ? 'white' : 'slate-800';
-  const contenttColor = theme === 'light' ? '[#ecedef]' : 'slate-400';
+  const bgColor = theme === 'dark' ? 'bg-slate-700' : 'bg-[#ecedef]';
+  const containerBgColor = theme === 'dark' ? 'bg-slate-800' : 'bg-[#fff]';
+  const elementsBgColor = theme === 'dark' ? 'bg-slate-700' : 'bg-[#ecedef]';
 
   return (
-    <div className="items-center rounded-md border-2 border-muted p-1 hover:border-accent">
-      <div className={`space-y-2 rounded-sm bg-${bgColor} p-2`}>
-        <div
-          className={`space-y-2 rounded-md bg-${containerColor} p-2 shadow-sm`}
-        >
-          <div className={`h-2 w-[80px] rounded-lg bg-${contenttColor}`} />
-          <div className={`h-2 w-[100px] rounded-lg bg-${contenttColor}`} />
-        </div>
+    <div className="cursor-pointer items-center rounded border-2 border-muted p-1 hover:border-accent">
+      <div className={`space-y-2 rounded ${bgColor} p-2`}>
         {Array.from({ length: 3 }).map((_, i) => (
           <div
             key={i}
-            className={`flex items-center space-x-2 rounded-md bg-${containerColor} p-2 shadow-sm`}
+            className={`flex items-center space-x-2 rounded p-2 shadow-sm ${containerBgColor}`}
           >
-            <div className={`h-4 w-4 rounded-full bg-${contenttColor}`} />
-            <div className={`h-2 w-[100px] rounded-lg bg-${contenttColor}`} />
+            <div className={`h-4 w-4 rounded-full ${elementsBgColor}`} />
+            <div className={`h-2 w-full rounded ${elementsBgColor}`} />
           </div>
         ))}
       </div>

@@ -3,8 +3,9 @@ import { Card } from '@/components/ui/card';
 import { SignUpForm } from '../components/sign-up-form';
 import Link from 'next/link';
 import { UserPlus2 } from 'lucide-react';
+import { NextPage } from 'next';
 
-export default function SignUp() {
+const SignUp: NextPage = () => {
   return (
     <>
       <div className="mb-4 flex items-center justify-center">
@@ -44,4 +45,6 @@ export default function SignUp() {
       </Card>
     </>
   );
-}
+};
+
+export default SignUp;

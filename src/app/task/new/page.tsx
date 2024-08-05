@@ -1,10 +1,18 @@
 'use client';
-import PlainTextEditor from '@/components/editors/plain-text-editor';
-import RichTextEditor from '@/components/editors/tiptap/text-editor';
+import { type FC, useState } from 'react';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Content } from '@tiptap/react';
-import { FC, useState } from 'react';
+import dynamic from 'next/dynamic';
+
+const PlainTextEditor = dynamic(
+  () => import('@/components/editors/plain-text-editor'),
+  { ssr: false }
+);
+const RichTextEditor = dynamic(
+  () => import('@/components/editors/tiptap/text-editor'),
+  { ssr: false }
+);
 
 const NewTaskPage: FC = () => {
   const [editorMode, setEditorMode] = useState<'richText' | 'textares'>(

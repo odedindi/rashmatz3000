@@ -4,12 +4,15 @@ import { cn } from '@/lib/utils';
 
 const EditorToolbarItem = forwardRef<
   HTMLButtonElement,
-  ButtonProps & { active?: 0 | 1 }
+  ButtonProps & { active?: boolean }
 >(({ active, ...props }, ref) => (
   <Button
     ref={ref}
     variant={'ringHover'}
-    className={cn('flex-1', active && 'ring-2 ring-primary/90 ring-offset-2')}
+    className={cn(
+      'flex-1 rounded',
+      active && 'ring-2 ring-primary/90 ring-offset-2'
+    )}
     {...props}
   />
 ));

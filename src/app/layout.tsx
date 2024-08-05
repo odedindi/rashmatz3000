@@ -5,6 +5,7 @@ import { Inter as FontSans } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import Providers from './providers';
 import AppShell from '@/components/app-shell';
+import { auth } from '@/auth';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -22,11 +23,13 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -35,7 +38,7 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <Providers>
+        <Providers session={session}>
           <div vaul-drawer-wrapper="" className={'bg-background'}>
             <AppShell>{children}</AppShell>
           </div>

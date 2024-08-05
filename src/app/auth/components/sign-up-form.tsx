@@ -14,8 +14,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { PasswordInput } from '@/components/ui/password-input';
 import { cn } from '@/lib/utils';
-import GithubIcon from './icons/github';
-import FacebookIcon from './icons/facebook';
+import GooleIcon from './icons/google';
 
 interface SignUpFormProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -73,7 +72,11 @@ export const SignUpForm: FC<SignUpFormProps> = ({ className, ...props }) => {
                 <FormItem className="space-y-1">
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="name@example.com" {...field} />
+                    <Input
+                      placeholder="name@example.com"
+                      {...field}
+                      className="rounded"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -86,7 +89,11 @@ export const SignUpForm: FC<SignUpFormProps> = ({ className, ...props }) => {
                 <FormItem className="space-y-1">
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <PasswordInput placeholder="********" {...field} />
+                    <PasswordInput
+                      placeholder="********"
+                      {...field}
+                      className="rounded"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -99,13 +106,17 @@ export const SignUpForm: FC<SignUpFormProps> = ({ className, ...props }) => {
                 <FormItem className="space-y-1">
                   <FormLabel>Confirm Password</FormLabel>
                   <FormControl>
-                    <PasswordInput placeholder="********" {...field} />
+                    <PasswordInput
+                      placeholder="********"
+                      {...field}
+                      className="rounded"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button className="mt-2" loading={isLoading}>
+            <Button className="mt-2 rounded" loading={isLoading}>
               Create Account
             </Button>
 
@@ -123,21 +134,12 @@ export const SignUpForm: FC<SignUpFormProps> = ({ className, ...props }) => {
             <div className="flex items-center gap-2">
               <Button
                 variant="outline"
-                className="w-full"
+                className="w-full rounded"
                 type="button"
                 loading={isLoading}
-                leftSection={<GithubIcon className="h-4 w-4" />}
+                leftSection={<GooleIcon className="h-4 w-4" />}
               >
-                GitHub
-              </Button>
-              <Button
-                variant="outline"
-                className="w-full"
-                type="button"
-                loading={isLoading}
-                leftSection={<FacebookIcon className="h-4 w-4" />}
-              >
-                Facebook
+                Google
               </Button>
             </div>
           </div>
